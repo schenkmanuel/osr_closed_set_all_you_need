@@ -98,15 +98,15 @@ def get_transform(transform_type='default', image_size=32, args=None):
 
     elif transform_type == 'rand-augment':
 
-        mean = (0.4914, 0.4822, 0.4465)
-        std = (0.2023, 0.1994, 0.2010)
+        #mean = (0.4914, 0.4822, 0.4465)
+        #std = (0.2023, 0.1994, 0.2010)
 
         train_transform = transforms.Compose([
             transforms.Resize((image_size, image_size)),
-            transforms.RandomCrop(image_size, padding=4),
-            transforms.RandomHorizontalFlip(),
+            #transforms.RandomCrop(image_size, padding=4),
+            #transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
-            transforms.Normalize(mean=mean, std=std),
+            #transforms.Normalize(mean=mean, std=std),
         ])
 
         train_transform.transforms.insert(0, RandAugment(1, 9, args=args))
@@ -114,7 +114,7 @@ def get_transform(transform_type='default', image_size=32, args=None):
         test_transform = transforms.Compose([
             transforms.Resize((image_size, image_size)),
             transforms.ToTensor(),
-            transforms.Normalize(mean=mean, std=std),
+            #transforms.Normalize(mean=mean, std=std),
         ])
     elif transform_type == 'openhybrid':
 
